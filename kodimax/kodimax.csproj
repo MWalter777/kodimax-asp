@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,14 +170,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\candiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\moviesController.cs" />
+    <Compile Include="Controllers\ticketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\candy.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\movie.cs" />
+    <Compile Include="Models\ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -234,6 +243,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\candies\Create.cshtml" />
+    <Content Include="Views\candies\Delete.cshtml" />
+    <Content Include="Views\candies\Details.cshtml" />
+    <Content Include="Views\candies\Edit.cshtml" />
+    <Content Include="Views\candies\Index.cshtml" />
+    <Content Include="Views\movies\Create.cshtml" />
+    <Content Include="Views\movies\Delete.cshtml" />
+    <Content Include="Views\movies\Details.cshtml" />
+    <Content Include="Views\movies\Edit.cshtml" />
+    <Content Include="Views\movies\Index.cshtml" />
+    <Content Include="Views\tickets\Create.cshtml" />
+    <Content Include="Views\tickets\Delete.cshtml" />
+    <Content Include="Views\tickets\Details.cshtml" />
+    <Content Include="Views\tickets\Edit.cshtml" />
+    <Content Include="Views\tickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

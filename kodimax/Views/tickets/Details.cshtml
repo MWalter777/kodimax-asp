@@ -1,0 +1,42 @@
+﻿@model kodimax.Models.ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sala)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sala)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cant_butaca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cant_butaca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
