@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kodimax.Models;
+using kodimax.Security;
 
 namespace kodimax.Controllers
 {
@@ -21,6 +22,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Movies/Details/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Movies/Create
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Create()
         {
             return View();
@@ -46,7 +49,8 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
+        [MyAuthorize(Roles = "administrador, empleado")]
+        public ActionResult Create([Bind(Include = "ID_MOVIE,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +63,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Movies/Edit/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,9 +81,10 @@ namespace kodimax.Controllers
         // POST: Movies/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [MyAuthorize(Roles = "administrador, empleado")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
+        public ActionResult Edit([Bind(Include = "ID_MOVIE,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +96,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Movies/Delete/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace kodimax.Controllers
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult DeleteConfirmed(int id)
         {
             MOVIE mOVIE = db.MOVIEs.Find(id);

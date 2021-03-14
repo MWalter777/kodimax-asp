@@ -9,7 +9,8 @@ namespace kodimax.Models
     [Table("CANDY")]
     public partial class CANDY
     {
-        public int ID { get; set; }
+        [Key]
+        public int ID_CANDY { get; set; }
 
         [StringLength(100)]
         public string NAME { get; set; }

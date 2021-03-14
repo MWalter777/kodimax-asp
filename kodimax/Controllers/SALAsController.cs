@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kodimax.Models;
+using kodimax.Security;
 
 namespace kodimax.Controllers
 {
@@ -21,6 +22,7 @@ namespace kodimax.Controllers
         }
 
         // GET: SALAs/Details/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace kodimax.Controllers
         }
 
         // GET: SALAs/Create
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Create([Bind(Include = "ID_SALA,NAME,PRICE,QUANTIY")] SALA sALA)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace kodimax.Controllers
         }
 
         // GET: SALAs/Edit/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit([Bind(Include = "ID_SALA,NAME,PRICE,QUANTIY")] SALA sALA)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace kodimax.Controllers
         }
 
         // GET: SALAs/Delete/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace kodimax.Controllers
         // POST: SALAs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult DeleteConfirmed(int id)
         {
             SALA sALA = db.SALAs.Find(id);

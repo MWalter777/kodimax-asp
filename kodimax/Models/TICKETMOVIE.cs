@@ -9,15 +9,14 @@ namespace kodimax.Models
     [Table("TICKETMOVIE")]
     public partial class TICKETMOVIE
     {
+        [Key]
         public int ID { get; set; }
 
         public int? ID_MOVIE { get; set; }
+        public virtual MOVIE movie { get; set; }
 
         public int? ID_SALA { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string SALA { get; set; }
+        public virtual SALA sala { get; set; }
 
         public int CANT_BUTACA { get; set; }
 

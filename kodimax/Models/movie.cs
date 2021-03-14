@@ -9,7 +9,8 @@ namespace kodimax.Models
     [Table("MOVIE")]
     public partial class MOVIE
     {
-        public int ID { get; set; }
+        [Key]
+        public int ID_MOVIE { get; set; }
 
         [Required]
         [StringLength(100)]

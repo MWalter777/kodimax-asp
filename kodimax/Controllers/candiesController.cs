@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kodimax.Models;
+using kodimax.Security;
 
 namespace kodimax.Controllers
 {
@@ -21,6 +22,7 @@ namespace kodimax.Controllers
         }
 
         // GET: CANDies/Details/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace kodimax.Controllers
         }
 
         // GET: CANDies/Create
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Create()
         {
             return View();
@@ -46,7 +49,8 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
+        [MyAuthorize(Roles = "administrador, empleado")]
+        public ActionResult Create([Bind(Include = "ID_CANDY,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +63,7 @@ namespace kodimax.Controllers
         }
 
         // GET: CANDies/Edit/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +83,8 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
+        [MyAuthorize(Roles = "administrador, empleado")]
+        public ActionResult Edit([Bind(Include = "ID_CANDY,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +95,7 @@ namespace kodimax.Controllers
             return View(cANDY);
         }
 
-        // GET: CANDies/Delete/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +111,7 @@ namespace kodimax.Controllers
         }
 
         // POST: CANDies/Delete/5
+        [MyAuthorize(Roles = "administrador, empleado")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

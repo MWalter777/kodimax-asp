@@ -47,8 +47,8 @@ namespace kodimax.Models
             /* Model DB */
 
             modelBuilder.Entity<CANDY>()
-    .Property(e => e.NAME)
-    .IsUnicode(false);
+                .Property(e => e.NAME)
+                .IsUnicode(false);
 
             modelBuilder.Entity<CANDY>()
                 .Property(e => e.TYPE)
@@ -90,9 +90,6 @@ namespace kodimax.Models
                 .Property(e => e.PAY)
                 .HasPrecision(8, 2);
 
-            modelBuilder.Entity<TICKETMOVIE>()
-                .Property(e => e.SALA)
-                .IsUnicode(false);
 
             modelBuilder.Entity<TICKETMOVIE>()
                 .Property(e => e.TYPE)

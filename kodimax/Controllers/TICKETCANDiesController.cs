@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kodimax.Models;
+using kodimax.Security;
 
 namespace kodimax.Controllers
 {
@@ -17,7 +18,8 @@ namespace kodimax.Controllers
         // GET: TICKETCANDies
         public ActionResult Index()
         {
-            return View(db.TICKETCANDies.ToList());
+            var tICKETCANDies = db.TICKETCANDies.Include(t => t.candy);
+            return View(tICKETCANDies.ToList());
         }
 
         // GET: TICKETCANDies/Details/5
@@ -38,6 +40,7 @@ namespace kodimax.Controllers
         // GET: TICKETCANDies/Create
         public ActionResult Create()
         {
+            ViewBag.ID_CANDY = new SelectList(db.CANDies, "ID_CANDY", "NAME");
             return View();
         }
 
@@ -48,17 +51,20 @@ namespace kodimax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_TIKET_CANDY,ID_CANDY,PAY")] TICKETCANDY tICKETCANDY)
         {
+            ViewBag.ID_CANDY = new SelectList(db.CANDies, "ID_CANDY", "NAME", tICKETCANDY.ID_CANDY);
             if (ModelState.IsValid)
             {
                 db.TICKETCANDies.Add(tICKETCANDY);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.total = db.CANDies.Find(tICKETCANDY.ID_CANDY).PRICE * tICKETCANDY.PAY;
+                ViewBag.empleado = db.USUARIO.ToList().First().USERNAME;
+                return View();
             }
-
             return View(tICKETCANDY);
         }
 
         // GET: TICKETCANDies/Edit/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,6 +76,7 @@ namespace kodimax.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ID_CANDY = new SelectList(db.CANDies, "ID_CANDY", "NAME", tICKETCANDY.ID_CANDY);
             return View(tICKETCANDY);
         }
 
@@ -78,6 +85,7 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit([Bind(Include = "ID_TIKET_CANDY,ID_CANDY,PAY")] TICKETCANDY tICKETCANDY)
         {
             if (ModelState.IsValid)
@@ -86,10 +94,12 @@ namespace kodimax.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ID_CANDY = new SelectList(db.CANDies, "ID_CANDY", "NAME", tICKETCANDY.ID_CANDY);
             return View(tICKETCANDY);
         }
 
         // GET: TICKETCANDies/Delete/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +117,7 @@ namespace kodimax.Controllers
         // POST: TICKETCANDies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult DeleteConfirmed(int id)
         {
             TICKETCANDY tICKETCANDY = db.TICKETCANDies.Find(id);

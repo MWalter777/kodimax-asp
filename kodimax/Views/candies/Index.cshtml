@@ -23,7 +23,10 @@
         <th>
             @Html.DisplayNameFor(model => model.IMAGE)
         </th>
-        <th></th>
+        @if (Session["rol"] as string == "administrador" || Session["rol"] as string == "empleado")
+        {
+            <th></th>
+        }
     </tr>
 
 @foreach (var item in Model) {
@@ -38,12 +41,15 @@
             @Html.DisplayFor(modelItem => item.PRICE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IMAGE)
+            <img src="@item.IMAGE" alt="img" width="75" height="75"/>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (Session["rol"] as string == "administrador" || Session["rol"] as string == "empleado")
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_CANDY }); 
+                @Html.ActionLink("Details", "Details", new { id = item.ID_CANDY });
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_CANDY });
+            }
         </td>
     </tr>
 }

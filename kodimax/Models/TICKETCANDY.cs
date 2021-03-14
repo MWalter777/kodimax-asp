@@ -13,6 +13,7 @@ namespace kodimax.Models
         public int ID_TIKET_CANDY { get; set; }
 
         public int? ID_CANDY { get; set; }
+        public virtual CANDY candy { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal PAY { get; set; }

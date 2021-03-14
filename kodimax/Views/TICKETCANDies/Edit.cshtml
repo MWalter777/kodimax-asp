@@ -17,9 +17,9 @@
         @Html.HiddenFor(model => model.ID_TIKET_CANDY)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ID_CANDY, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ID_CANDY, "ID_CANDY", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ID_CANDY, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("ID_CANDY", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_CANDY, "", new { @class = "text-danger" })
             </div>
         </div>

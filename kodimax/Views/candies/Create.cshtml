@@ -12,6 +12,10 @@
     
     <div class="form-horizontal">
         <h4>CANDY</h4>
+        @if (ViewBag.total != null)
+        {
+            <h1 class="alert alert-success">Total:  @ViewBag.total</h1>
+        }
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

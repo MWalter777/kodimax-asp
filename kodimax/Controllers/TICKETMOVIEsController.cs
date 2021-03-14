@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kodimax.Models;
+using kodimax.Security;
 
 namespace kodimax.Controllers
 {
@@ -17,7 +18,8 @@ namespace kodimax.Controllers
         // GET: TICKETMOVIEs
         public ActionResult Index()
         {
-            return View(db.TICKETMOVIEs.ToList());
+            var tICKETMOVIEs = db.TICKETMOVIEs.Include(t => t.movie).Include(t => t.sala);
+            return View(tICKETMOVIEs.ToList());
         }
 
         // GET: TICKETMOVIEs/Details/5
@@ -38,6 +40,8 @@ namespace kodimax.Controllers
         // GET: TICKETMOVIEs/Create
         public ActionResult Create()
         {
+            ViewBag.ID_MOVIE = new SelectList(db.MOVIEs, "ID_MOVIE", "NAME");
+            ViewBag.ID_SALA = new SelectList(db.SALAs, "ID_SALA", "NAME");
             return View();
         }
 
@@ -46,19 +50,22 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_MOVIE,ID_SALA,SALA,CANT_BUTACA,TYPE")] TICKETMOVIE tICKETMOVIE)
+        public ActionResult Create([Bind(Include = "ID,ID_MOVIE,ID_SALA,CANT_BUTACA,TYPE")] TICKETMOVIE tICKETMOVIE)
         {
+            ViewBag.ID_MOVIE = new SelectList(db.MOVIEs, "ID_MOVIE", "NAME", tICKETMOVIE.ID_MOVIE);
+            ViewBag.ID_SALA = new SelectList(db.SALAs, "ID_SALA", "NAME", tICKETMOVIE.ID_SALA);
             if (ModelState.IsValid)
             {
                 db.TICKETMOVIEs.Add(tICKETMOVIE);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.total = db.SALAs.Find(tICKETMOVIE.ID_SALA).PRICE * tICKETMOVIE.CANT_BUTACA;
+                return View();
             }
-
             return View(tICKETMOVIE);
         }
 
         // GET: TICKETMOVIEs/Edit/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,6 +77,8 @@ namespace kodimax.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ID_MOVIE = new SelectList(db.MOVIEs, "ID_MOVIE", "NAME", tICKETMOVIE.ID_MOVIE);
+            ViewBag.ID_SALA = new SelectList(db.SALAs, "ID_SALA", "NAME", tICKETMOVIE.ID_SALA);
             return View(tICKETMOVIE);
         }
 
@@ -78,7 +87,8 @@ namespace kodimax.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_MOVIE,ID_SALA,SALA,CANT_BUTACA,TYPE")] TICKETMOVIE tICKETMOVIE)
+        [MyAuthorize(Roles = "administrador")]
+        public ActionResult Edit([Bind(Include = "ID,ID_MOVIE,ID_SALA,CANT_BUTACA,TYPE")] TICKETMOVIE tICKETMOVIE)
         {
             if (ModelState.IsValid)
             {
@@ -86,10 +96,13 @@ namespace kodimax.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ID_MOVIE = new SelectList(db.MOVIEs, "ID_MOVIE", "NAME", tICKETMOVIE.ID_MOVIE);
+            ViewBag.ID_SALA = new SelectList(db.SALAs, "ID_SALA", "NAME", tICKETMOVIE.ID_SALA);
             return View(tICKETMOVIE);
         }
 
         // GET: TICKETMOVIEs/Delete/5
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +120,7 @@ namespace kodimax.Controllers
         // POST: TICKETMOVIEs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult DeleteConfirmed(int id)
         {
             TICKETMOVIE tICKETMOVIE = db.TICKETMOVIEs.Find(id);
