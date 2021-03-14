@@ -30,16 +30,6 @@
             </div>
         </div>
 
-		<div class="form-group">
-			@foreach (var p in ViewBag.permisos)
-			{
-				<div class="checkbox">
-					<label><input type="checkbox" value="@p.ID_PERMISO" name="id_permiso">@p.DESCRIPCION_PERMISO</label>
-				</div>
-			}
-
-		</div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Crear" class="btn btn-primary" />
