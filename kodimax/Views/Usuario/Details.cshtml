@@ -1,0 +1,49 @@
+﻿@model kodimax.Models.USUARIO
+
+@{
+    ViewBag.Title = "Detalle de usuario";
+}
+
+
+<div class="tile">
+    <h2 class="text-center">Detalle de usuarios</h2>
+    @if (ViewBag.error != null)
+    {
+        <h2 class="text-center alert-danger">@ViewBag.error</h2>
+    }
+    <div>
+        <h4>Rango de comision</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_ROL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_ROL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EMAIL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HABILITADO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HABILITADO)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_USUARIO }, htmlAttributes: new { @class = "btn btn-warning" }) |
+        <a href="/usuario/" class="btn btn-info">Regresar</a>
+    </p>
+</div>

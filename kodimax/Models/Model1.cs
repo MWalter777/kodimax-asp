@@ -15,6 +15,8 @@ namespace kodimax.Models
         public virtual DbSet<candy> candies { get; set; }
         public virtual DbSet<movie> movies { get; set; }
         public virtual DbSet<ticket> tickets { get; set; }
+        public virtual DbSet<ROL> ROL { get; set; }
+        public virtual DbSet<USUARIO> USUARIO { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -56,6 +58,27 @@ namespace kodimax.Models
 
             modelBuilder.Entity<ticket>()
                 .Property(e => e.type)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ROL>()
+                .Property(e => e.NOMBRE_ROL)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ROL>()
+                .Property(e => e.DESCRIPCION_ROL)
+                .IsUnicode(false);
+
+
+            modelBuilder.Entity<USUARIO>()
+              .Property(e => e.EMAIL)
+              .IsUnicode(false);
+
+            modelBuilder.Entity<USUARIO>()
+                .Property(e => e.USERNAME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<USUARIO>()
+                .Property(e => e.PASSWORD)
                 .IsUnicode(false);
         }
     }

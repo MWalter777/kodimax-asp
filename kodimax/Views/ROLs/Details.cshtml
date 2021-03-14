@@ -1,0 +1,52 @@
+﻿@model kodimax.Models.ROL
+
+@{
+    ViewBag.Title = "Detalle de Rol";
+}
+
+<h2>Detalles</h2>
+
+<div>
+	<h4>ROL</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.NOMBRE_ROL)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.NOMBRE_ROL)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.DESCRIPCION_ROL)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.DESCRIPCION_ROL)
+		</dd>
+
+	</dl>
+
+	<div class="form-group">
+		@foreach (var p in ViewBag.permisos)
+		{
+			if (ViewBag.permisos_activos.Contains(p.ID_PERMISO))
+			{
+				<div class="checkbox">
+					<label><input type="checkbox" value="@p.ID_PERMISO" name="id_permiso" checked disabled>@p.DESCRIPCION_PERMISO</label>
+				</div>
+			}
+			else
+			{
+				<div class="checkbox">
+					<label><input type="checkbox" value="@p.ID_PERMISO" name="id_permiso" disabled>@p.DESCRIPCION_PERMISO</label>
+				</div>
+			}
+		}
+	</div>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_ROL }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-secondary" })
+</p>

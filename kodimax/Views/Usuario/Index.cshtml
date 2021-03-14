@@ -1,0 +1,49 @@
+﻿@model IEnumerable<kodimax.Models.USUARIO>
+
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<div class="tile">
+    <table class="table" id="sampleTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_ROL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EMAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HABILITADO)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_ROL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HABILITADO)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID_USUARIO }, htmlAttributes: new { @class = "btn btn-warning" }) |
+                        @Html.ActionLink("Detalle", "Details", new { id = item.ID_USUARIO }, htmlAttributes: new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_USUARIO }, htmlAttributes: new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

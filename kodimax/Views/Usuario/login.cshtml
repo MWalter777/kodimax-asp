@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/font-awesome.min.css")
+    <title>Login</title>
+</head>
+<body>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+            <h1>Registrese en SAP</h1>
+        </div>
+        <div class="col-md-4">
+            <div class="tile">
+                <h3 class="tile-title text-center">Login <i class="fa fa-user"></i> </h3>
+                <div class="tile-body">
+                    <h3 class="alert-success">@ViewBag.Success </h3>
+                    <h3 class="alert-danger">@ViewBag.Error </h3>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Username</label>
+                                <div class="col-md-8">
+                                    <input class="form-control col-md-9" name="username" type="text" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Password</label>
+                                <div class="col-md-8">
+                                    <input class="form-control col-md-9" name="password" type="password" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-offset-2 col-md-8">
+                                    <label class="control-label col-md-4">&nbsp;</label>
+                                    <label class="control-label col-md-3">&nbsp;</label>
+                                    <input type="submit" value="Iniciar sesion" class="btn btn-primary" />
+                                </div>                            
+                            </div>
+                        </form>
+                    }
+                    <div>
+                        <a href="/Usuario/Create">Crear cuenta</a>
+                        <label class="control-label col-md-4">&nbsp;</label>
+                        <a href="/Usuario/Forget" class="text-right">Olvido su contraseña ?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @Scripts.Render("~/Scripts/js/jquery-3.2.1.min.js")
+
+    @Scripts.Render("~/Scripts/js/popper.min.js")
+    @Scripts.Render("~/Scripts/js/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/js/main.js")
+
+
+    @Scripts.Render("~/Scripts/js/plugins/pace.min.js")
+    @Scripts.Render("~/Scripts/js/plugins/chart.js")
+
+</body>
+</html>
+

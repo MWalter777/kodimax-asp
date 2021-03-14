@@ -1,0 +1,82 @@
+﻿@{ 
+    Layout = null;
+}
+
+@model kodimax.Models.USUARIO
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/font-awesome.min.css")
+    <title>Registrarse</title>
+</head>
+<body>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+            <h1>Registrese en SAP</h1>
+        </div>
+        <div class="col-md-4">
+            <div class="tile">
+                <h3 class="tile-title text-center">Solicitud de nuevo usuario <i class="fa fa-user"></i> </h3>
+                <div class="tile-body">
+                    <h3 class="alert-success">@ViewBag.Success </h3>
+                    <h3 class="alert-danger">@ViewBag.Error </h3>
+                 @using (Html.BeginForm())
+                 {
+                     @Html.AntiForgeryToken()
+                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Username</label>
+                                <div class="col-md-9">
+                                    <input class="form-control col-md-8" name="username" type="text" placeholder="Username" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Email</label>
+                                <div class="col-md-9">
+                                    <input class="form-control col-md-8" name="email" type="email" placeholder="Ingrese su email" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Password</label>
+                                <div class="col-md-9">
+                                    <input class="form-control col-md-8" name="password" type="password" maxlength="60" minlength="8" placeholder="Password" pattern="((?=.*\d)(?=.*[a-zA-Z]).{8,50})" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default text-center" />
+                                </div>
+                            </div>
+                        </form>
+                     }
+                    <div>
+                        <a href="/Usuario/login">Iniciar sesion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @Scripts.Render("~/Scripts/js/jquery-3.2.1.min.js")
+
+    @Scripts.Render("~/Scripts/js/popper.min.js")
+    @Scripts.Render("~/Scripts/js/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/js/main.js")
+
+
+    @Scripts.Render("~/Scripts/js/plugins/pace.min.js")
+    @Scripts.Render("~/Scripts/js/plugins/chart.js")
+
+</body>
+</html>
+
+

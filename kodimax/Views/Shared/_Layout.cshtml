@@ -1,46 +1,142 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+	<title>@ViewBag.Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Main CSS-->
+	@Styles.Render("~/Content/css/main.css")
+	@Styles.Render("~/Content/font-awesome-4.7.0/css/font-awesome.min.css")
+	@Scripts.Render("~/Content/bootstrap-4/css/bootstrap.min.css")
+	@Styles.Render("~/Content/jquery-css/jquery-ui.min.css")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li><a href="/candies">Candies</a></li>
-                    <li><a href="/movies">Movies</a></li>
-                    <li><a href="/tickets">Tickes</a></li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+<body class="app sidebar-mini rtl">
+	<!-- Navbar-->
+	<header class="app-header">
+		<a class="app-header__logo" href="/">Inicio</a>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+		<ul class="app-nav">
+			@if (@Session["username"] != null)
+			{
+				<li><a class="app-nav__item" href="/Usuario/perfil">@Session["email"] <i class="fa fa-user fa-lg"> </i> @Session["username"]</a></li>
+				<li><a class="app-nav__item" href="/Usuario/logout"><i class="fa fa-user fa-lg"></i>Salir</a></li>
+			}
+
+			@if (@Session["username"] == null)
+			{
+				<li class="dropdown">
+					<a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i>Iniciar sesion</a>
+					<ul class="dropdown-menu settings-menu dropdown-menu-right">
+						<li><a class="dropdown-item" href="/Usuario/login"><i class="fa fa-user fa-lg"></i> iniciar sesion</a></li>
+						<li><a class="dropdown-item" href="/Usuario/create"><i class="fa fa-user fa-lg"></i>Registrarse</a></li>
+					</ul>
+				</li>
+			}
+	</header>
+	<!-- Sidebar menu-->
+	<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+	<aside class="app-sidebar">
+		<div class="app-sidebar__user">
+			@*<img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">*@
+			<div>
+				@if (Session["username"] != null)
+				{
+					<p class="app-sidebar__user-name">@Session["username"]</p>
+					<p class="app-sidebar__user-designation">@Session["email"]</p>
+				}
+				else
+				{
+					<p class="app-sidebar__user-name">USUARIO ANÓNIMO</p>
+					<p class="app-sidebar__user-designation"></p>
+				}
+			</div>
+		</div>
+		<ul class="app-menu" id="menu_mostrar_dinamico">
+            @if (Session["rol"] as string == "administrador")
+            {
+                <li>
+                    <a class="app-menu__item active" href="/usuario">
+                        <i class="app-menu__icon fa fa-dashboard"></i>
+                        <span class="app-menu__label">Administrador</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item active" href="/usuario">
+                        <i class="app-menu__icon fa fa-dashboard"></i>
+                        <span class="app-menu__label">Roles</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                if (Session["rol"] as string == "empleado")
+                {
+
+                    <li>
+                        <a class="app-menu__item active" href="/usuario">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Empleado</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-menu__item active" href="/usuario">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Roles</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="app-menu__item active" href="/usuario">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Cliente</span>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+	</aside>
+	<main class="app-content">
+		<div class="container body-content">
+			@RenderBody()
+		</div>
+	</main>
+	<!-- Essential javascripts for application to work-->
+	@Scripts.Render("~/Scripts/js-own/jquery-3.4.1.min.js")
+	@Scripts.Render("~/Scripts/js-own/jquery-ui.min.js")
+	@Scripts.Render("~/Scripts/js-own/script.js")
+	@Scripts.Render("~/Scripts/js/popper.min.js")
+	@Scripts.Render("~/Scripts/bootstrap-4/js/bootstrap.min.js")
+	@Scripts.Render("~/Scripts/js/main.js")
+	@*@Scripts.Render("~/Scripts/js/plugins/pace.min.js")*@
+
+	@Scripts.Render("~/Scripts/js/plugins/jquery.dataTables.min.js")
+	@Scripts.Render("~/Scripts/js/plugins/dataTables.bootstrap.min.js")
+	@Scripts.Render("~/Scripts/js/jspdf.min.js")
+	<script type="text/javascript">
+        $('#sampleTable').DataTable({
+            "order": [[0, "desc"]]
+        });
+        $('#sampleTable2').DataTable();
+    </script>
+
+	<!-- The javascript plugin to display page loading on top-->
+	<script type="text/javascript">
+		$('#menu_mostrar_dinamico').load("http://localhost:52228/Home/Servicio");
+	</script>
+
+	@RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
