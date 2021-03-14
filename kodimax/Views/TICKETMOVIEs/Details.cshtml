@@ -1,0 +1,58 @@
+﻿@model kodimax.Models.TICKETMOVIE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TICKETMOVIE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_MOVIE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_MOVIE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_SALA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_SALA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SALA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CANT_BUTACA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CANT_BUTACA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

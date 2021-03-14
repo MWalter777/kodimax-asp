@@ -68,19 +68,32 @@
                 </li>
 
                 <li>
-                    <a class="app-menu__item active" href="/tickets">
+                    <a class="app-menu__item active" href="/SALAs">
                         <i class="app-menu__icon fa fa-dashboard"></i>
-                        <span class="app-menu__label">Tickets</span>
+                        <span class="app-menu__label">Salas</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="app-menu__item active" href="/TICKETMOVIEs">
+                        <i class="app-menu__icon fa fa-dashboard"></i>
+                        <span class="app-menu__label">Tickets Movies</span>
                     </a>
                 </li>
                 <li>
-                    <a class="app-menu__item active" href="/movies">
+                    <a class="app-menu__item active" href="/TICKETMOVIEs">
+                        <i class="app-menu__icon fa fa-dashboard"></i>
+                        <span class="app-menu__label">Tickets Movies</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item active" href="/Movies">
                         <i class="app-menu__icon fa fa-dashboard"></i>
                         <span class="app-menu__label">Movies</span>
                     </a>
                 </li>
                 <li>
-                    <a class="app-menu__item active" href="/candies">
+                    <a class="app-menu__item active" href="/CANDies">
                         <i class="app-menu__icon fa fa-dashboard"></i>
                         <span class="app-menu__label">Candys</span>
                     </a>
@@ -90,26 +103,43 @@
             {
                 if (Session["rol"] as string == "empleado")
                 {
-
                     <li>
-                        <a class="app-menu__item active" href="/usuario">
+                        <a class="app-menu__item active" href="/Movies">
                             <i class="app-menu__icon fa fa-dashboard"></i>
-                            <span class="app-menu__label">Empleado</span>
+                            <span class="app-menu__label">Movies</span>
                         </a>
                     </li>
                     <li>
-                        <a class="app-menu__item active" href="/usuario">
+                        <a class="app-menu__item active" href="/CANDies">
                             <i class="app-menu__icon fa fa-dashboard"></i>
-                            <span class="app-menu__label">Roles</span>
+                            <span class="app-menu__label">Candys</span>
                         </a>
                     </li>
                 }
                 else
                 {
                     <li>
-                        <a class="app-menu__item active" href="/usuario">
+                        <a class="app-menu__item active" href="/movies">
                             <i class="app-menu__icon fa fa-dashboard"></i>
-                            <span class="app-menu__label">Cliente</span>
+                            <span class="app-menu__label">Ver cartelera</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-menu__item active" href="/candies">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Ver golosinas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-menu__item active" href="/TICKETMOVIEs/Create">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Comprar boletos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-menu__item active" href="/candies/create">
+                            <i class="app-menu__icon fa fa-dashboard"></i>
+                            <span class="app-menu__label">Comprar golosinas</span>
                         </a>
                     </li>
                 }

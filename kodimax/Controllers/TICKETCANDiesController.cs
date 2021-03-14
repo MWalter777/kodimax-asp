@@ -10,107 +10,107 @@ using kodimax.Models;
 
 namespace kodimax.Controllers
 {
-    public class ticketsController : Controller
+    public class TICKETCANDiesController : Controller
     {
         private Model1 db = new Model1();
 
-        // GET: tickets
+        // GET: TICKETCANDies
         public ActionResult Index()
         {
-            return View(db.tickets.ToList());
+            return View(db.TICKETCANDies.ToList());
         }
 
-        // GET: tickets/Details/5
+        // GET: TICKETCANDies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ticket ticket = db.tickets.Find(id);
-            if (ticket == null)
+            TICKETCANDY tICKETCANDY = db.TICKETCANDies.Find(id);
+            if (tICKETCANDY == null)
             {
                 return HttpNotFound();
             }
-            return View(ticket);
+            return View(tICKETCANDY);
         }
 
-        // GET: tickets/Create
+        // GET: TICKETCANDies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: tickets/Create
+        // POST: TICKETCANDies/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,sala,cant_butaca,type")] ticket ticket)
+        public ActionResult Create([Bind(Include = "ID_TIKET_CANDY,ID_CANDY,PAY")] TICKETCANDY tICKETCANDY)
         {
             if (ModelState.IsValid)
             {
-                db.tickets.Add(ticket);
+                db.TICKETCANDies.Add(tICKETCANDY);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(ticket);
+            return View(tICKETCANDY);
         }
 
-        // GET: tickets/Edit/5
+        // GET: TICKETCANDies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ticket ticket = db.tickets.Find(id);
-            if (ticket == null)
+            TICKETCANDY tICKETCANDY = db.TICKETCANDies.Find(id);
+            if (tICKETCANDY == null)
             {
                 return HttpNotFound();
             }
-            return View(ticket);
+            return View(tICKETCANDY);
         }
 
-        // POST: tickets/Edit/5
+        // POST: TICKETCANDies/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,sala,cant_butaca,type")] ticket ticket)
+        public ActionResult Edit([Bind(Include = "ID_TIKET_CANDY,ID_CANDY,PAY")] TICKETCANDY tICKETCANDY)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ticket).State = EntityState.Modified;
+                db.Entry(tICKETCANDY).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ticket);
+            return View(tICKETCANDY);
         }
 
-        // GET: tickets/Delete/5
+        // GET: TICKETCANDies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ticket ticket = db.tickets.Find(id);
-            if (ticket == null)
+            TICKETCANDY tICKETCANDY = db.TICKETCANDies.Find(id);
+            if (tICKETCANDY == null)
             {
                 return HttpNotFound();
             }
-            return View(ticket);
+            return View(tICKETCANDY);
         }
 
-        // POST: tickets/Delete/5
+        // POST: TICKETCANDies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ticket ticket = db.tickets.Find(id);
-            db.tickets.Remove(ticket);
+            TICKETCANDY tICKETCANDY = db.TICKETCANDies.Find(id);
+            db.TICKETCANDies.Remove(tICKETCANDY);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,107 +10,107 @@ using kodimax.Models;
 
 namespace kodimax.Controllers
 {
-    public class CANDiesController : Controller
+    public class SALAsController : Controller
     {
         private Model1 db = new Model1();
 
-        // GET: CANDies
+        // GET: SALAs
         public ActionResult Index()
         {
-            return View(db.CANDies.ToList());
+            return View(db.SALAs.ToList());
         }
 
-        // GET: CANDies/Details/5
+        // GET: SALAs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CANDY cANDY = db.CANDies.Find(id);
-            if (cANDY == null)
+            SALA sALA = db.SALAs.Find(id);
+            if (sALA == null)
             {
                 return HttpNotFound();
             }
-            return View(cANDY);
+            return View(sALA);
         }
 
-        // GET: CANDies/Create
+        // GET: SALAs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CANDies/Create
+        // POST: SALAs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
+        public ActionResult Create([Bind(Include = "ID_SALA,NAME,PRICE,QUANTIY")] SALA sALA)
         {
             if (ModelState.IsValid)
             {
-                db.CANDies.Add(cANDY);
+                db.SALAs.Add(sALA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cANDY);
+            return View(sALA);
         }
 
-        // GET: CANDies/Edit/5
+        // GET: SALAs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CANDY cANDY = db.CANDies.Find(id);
-            if (cANDY == null)
+            SALA sALA = db.SALAs.Find(id);
+            if (sALA == null)
             {
                 return HttpNotFound();
             }
-            return View(cANDY);
+            return View(sALA);
         }
 
-        // POST: CANDies/Edit/5
+        // POST: SALAs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NAME,TYPE,PRICE,IMAGE")] CANDY cANDY)
+        public ActionResult Edit([Bind(Include = "ID_SALA,NAME,PRICE,QUANTIY")] SALA sALA)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cANDY).State = EntityState.Modified;
+                db.Entry(sALA).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cANDY);
+            return View(sALA);
         }
 
-        // GET: CANDies/Delete/5
+        // GET: SALAs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CANDY cANDY = db.CANDies.Find(id);
-            if (cANDY == null)
+            SALA sALA = db.SALAs.Find(id);
+            if (sALA == null)
             {
                 return HttpNotFound();
             }
-            return View(cANDY);
+            return View(sALA);
         }
 
-        // POST: CANDies/Delete/5
+        // POST: SALAs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CANDY cANDY = db.CANDies.Find(id);
-            db.CANDies.Remove(cANDY);
+            SALA sALA = db.SALAs.Find(id);
+            db.SALAs.Remove(sALA);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

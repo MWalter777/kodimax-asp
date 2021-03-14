@@ -10,107 +10,107 @@ using kodimax.Models;
 
 namespace kodimax.Controllers
 {
-    public class moviesController : Controller
+    public class MoviesController : Controller
     {
         private Model1 db = new Model1();
 
-        // GET: movies
+        // GET: Movies
         public ActionResult Index()
         {
-            return View(db.movies.ToList());
+            return View(db.MOVIEs.ToList());
         }
 
-        // GET: movies/Details/5
+        // GET: Movies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            movie movie = db.movies.Find(id);
-            if (movie == null)
+            MOVIE mOVIE = db.MOVIEs.Find(id);
+            if (mOVIE == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(mOVIE);
         }
 
-        // GET: movies/Create
+        // GET: Movies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: movies/Create
+        // POST: Movies/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,timemovie,type,image")] movie movie)
+        public ActionResult Create([Bind(Include = "ID,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
-                db.movies.Add(movie);
+                db.MOVIEs.Add(mOVIE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(movie);
+            return View(mOVIE);
         }
 
-        // GET: movies/Edit/5
+        // GET: Movies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            movie movie = db.movies.Find(id);
-            if (movie == null)
+            MOVIE mOVIE = db.MOVIEs.Find(id);
+            if (mOVIE == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(mOVIE);
         }
 
-        // POST: movies/Edit/5
+        // POST: Movies/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,timemovie,type,image")] movie movie)
+        public ActionResult Edit([Bind(Include = "ID,NAME,TIME,TYPE,IMAGE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
+                db.Entry(mOVIE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            return View(mOVIE);
         }
 
-        // GET: movies/Delete/5
+        // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            movie movie = db.movies.Find(id);
-            if (movie == null)
+            MOVIE mOVIE = db.MOVIEs.Find(id);
+            if (mOVIE == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(mOVIE);
         }
 
-        // POST: movies/Delete/5
+        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            movie movie = db.movies.Find(id);
-            db.movies.Remove(movie);
+            MOVIE mOVIE = db.MOVIEs.Find(id);
+            db.MOVIEs.Remove(mOVIE);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

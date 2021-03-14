@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/font-awesome.min.css")
+    <title>Registrarse</title>
+</head>
+<body>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+            <h1>Permiso denegado</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">Registrese</h3>
+                <div class="tile-body">
+                    <h3 class="alert-success">@ViewBag.Success </h3>
+                    <h3 class="alert-danger">@ViewBag.Error </h3>
+                    <div>
+                        <a href="/" class="btn btn-info">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @Scripts.Render("~/Scripts/js/jquery-3.2.1.min.js")
+
+    @Scripts.Render("~/Scripts/js/popper.min.js")
+    @Scripts.Render("~/Scripts/js/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/js/main.js")
+
+
+    @Scripts.Render("~/Scripts/js/plugins/pace.min.js")
+    @Scripts.Render("~/Scripts/js/plugins/chart.js")
+
+</body>
+</html>
+

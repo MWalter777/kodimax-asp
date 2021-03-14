@@ -1,4 +1,4 @@
-﻿@model kodimax.Models.CANDY
+﻿@model kodimax.Models.SALA
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CANDY</h4>
+    <h4>SALA</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,14 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TYPE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TYPE)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.PRICE)
         </dt>
 
@@ -35,16 +27,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IMAGE)
+            @Html.DisplayNameFor(model => model.QUANTIY)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IMAGE)
+            @Html.DisplayFor(model => model.QUANTIY)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_SALA }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

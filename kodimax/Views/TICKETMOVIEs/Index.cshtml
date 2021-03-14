@@ -1,4 +1,4 @@
-﻿@model IEnumerable<kodimax.Models.MOVIE>
+﻿@model IEnumerable<kodimax.Models.TICKETMOVIE>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NAME)
+            @Html.DisplayNameFor(model => model.ID_MOVIE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TIME)
+            @Html.DisplayNameFor(model => model.ID_SALA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SALA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANT_BUTACA)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IMAGE)
         </th>
         <th></th>
     </tr>
@@ -29,16 +32,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NAME)
+            @Html.DisplayFor(modelItem => item.ID_MOVIE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TIME)
+            @Html.DisplayFor(modelItem => item.ID_SALA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SALA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANT_BUTACA)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IMAGE)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

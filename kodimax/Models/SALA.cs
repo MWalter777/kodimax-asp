@@ -6,21 +6,19 @@ namespace kodimax.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CANDY")]
-    public partial class CANDY
+    [Table("SALA")]
+    public partial class SALA
     {
-        public int ID { get; set; }
+        [Key]
+        public int ID_SALA { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string NAME { get; set; }
 
-        [StringLength(100)]
-        public string TYPE { get; set; }
-
         [Column(TypeName = "numeric")]
-        public decimal? PRICE { get; set; }
+        public decimal PRICE { get; set; }
 
-        [StringLength(500)]
-        public string IMAGE { get; set; }
+        public int QUANTIY { get; set; }
     }
 }

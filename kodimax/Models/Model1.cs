@@ -12,53 +12,16 @@ namespace kodimax.Models
         {
         }
 
-        public virtual DbSet<candy> candies { get; set; }
-        public virtual DbSet<movie> movies { get; set; }
-        public virtual DbSet<ticket> tickets { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<CANDY> CANDies { get; set; }
+        public virtual DbSet<MOVIE> MOVIEs { get; set; }
+        public virtual DbSet<SALA> SALAs { get; set; }
+        public virtual DbSet<TICKETCANDY> TICKETCANDies { get; set; }
+        public virtual DbSet<TICKETMOVIE> TICKETMOVIEs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<candy>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<candy>()
-                .Property(e => e.type)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<candy>()
-                .Property(e => e.price)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<candy>()
-                .Property(e => e.image)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<movie>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<movie>()
-                .Property(e => e.timemovie)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<movie>()
-                .Property(e => e.type)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<movie>()
-                .Property(e => e.image)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ticket>()
-                .Property(e => e.sala)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ticket>()
-                .Property(e => e.type)
-                .IsUnicode(false);
 
             modelBuilder.Entity<ROL>()
                 .Property(e => e.NOMBRE_ROL)
@@ -80,6 +43,63 @@ namespace kodimax.Models
             modelBuilder.Entity<USUARIO>()
                 .Property(e => e.PASSWORD)
                 .IsUnicode(false);
+
+            /* Model DB */
+
+            modelBuilder.Entity<CANDY>()
+    .Property(e => e.NAME)
+    .IsUnicode(false);
+
+            modelBuilder.Entity<CANDY>()
+                .Property(e => e.TYPE)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CANDY>()
+                .Property(e => e.PRICE)
+                .HasPrecision(8, 2);
+
+            modelBuilder.Entity<CANDY>()
+                .Property(e => e.IMAGE)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MOVIE>()
+                .Property(e => e.NAME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MOVIE>()
+                .Property(e => e.TIME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MOVIE>()
+                .Property(e => e.TYPE)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MOVIE>()
+                .Property(e => e.IMAGE)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SALA>()
+                .Property(e => e.NAME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SALA>()
+                .Property(e => e.PRICE)
+                .HasPrecision(8, 2);
+
+            modelBuilder.Entity<TICKETCANDY>()
+                .Property(e => e.PAY)
+                .HasPrecision(8, 2);
+
+            modelBuilder.Entity<TICKETMOVIE>()
+                .Property(e => e.SALA)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TICKETMOVIE>()
+                .Property(e => e.TYPE)
+                .IsUnicode(false);
+
+
+
         }
     }
 }

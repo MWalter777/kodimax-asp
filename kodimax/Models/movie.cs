@@ -6,26 +6,25 @@ namespace kodimax.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("movie")]
-    public partial class movie
+    [Table("MOVIE")]
+    public partial class MOVIE
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string name { get; set; }
+        public string NAME { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string timemovie { get; set; }
+        public string TIME { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string type { get; set; }
+        public string TYPE { get; set; }
 
         [Required]
         [StringLength(500)]
-        public string image { get; set; }
+        public string IMAGE { get; set; }
     }
 }
