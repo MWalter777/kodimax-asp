@@ -32,7 +32,7 @@ namespace kodimax.Security
             ROL rol = db.ROL.Find(account.ID_ROL);
             if (rol != null)
             {
-               return roles.All(r => rol.NOMBRE_ROL == r);
+               return roles.Any(r => rol.NOMBRE_ROL == r);
             }
             return false;
         }

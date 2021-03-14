@@ -203,7 +203,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Usuario/Edit/5
-        [MyAuthorize(Roles = "editar_usuario")]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -238,7 +238,7 @@ namespace kodimax.Controllers
         }
 
         // GET: Usuario/Delete/5
-        [MyAuthorize(Roles = "eliminar_usuario")]
+        [MyAuthorize(Roles = "administrador")]
         public ActionResult Delete(string id)
         {
             if (id == null)
